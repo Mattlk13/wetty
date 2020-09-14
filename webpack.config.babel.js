@@ -1,23 +1,22 @@
-import path from 'path';
-import webpack from 'webpack';
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import nodeExternals from 'webpack-node-externals';
+import path from 'path';
+import webpack from 'webpack';
 
-const template = override =>
-  Object.assign(
-    {
-      mode: process.env.NODE_ENV || 'development',
-      resolve: {
-        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-        extensions: ['.ts', '.json', '.js', '.node'],
-      },
+const template = override => ({
+  mode: process.env.NODE_ENV || 'development',
+  resolve: {
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    extensions: ['.ts', '.json', '.js', '.node'],
+  },
 
-      stats: {
-        colors: true,
-      },
-    },
-    override
-  );
+  stats: {
+    colors: true,
+  },
+  ...override,
+});
 
 const entry = (folder, file) =>
   path.join(__dirname, 'src', folder, `${file}.ts`);
@@ -95,7 +94,7 @@ export default [
                   },
                 ],
               ],
-              plugins: ['lodash'],
+              plugins: ['lodash', '@babel/plugin-proposal-class-properties'],
             },
           },
         },

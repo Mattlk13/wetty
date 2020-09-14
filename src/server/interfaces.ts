@@ -3,13 +3,14 @@ export interface SSH {
   host: string;
   auth: string;
   port: number;
+  knownhosts: string;
   pass?: string;
   key?: string;
 }
 
 export interface SSL {
-  key?: string;
-  cert?: string;
+  key: string;
+  cert: string;
 }
 
 export interface SSLBuffer {
@@ -20,6 +21,7 @@ export interface SSLBuffer {
 export interface Server {
   port: number;
   host: string;
+  title: string;
   base: string;
   bypasshelmet: boolean;
 }
